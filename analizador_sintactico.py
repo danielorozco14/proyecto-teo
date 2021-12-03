@@ -62,7 +62,7 @@ def p_expresion_include(t):
 
 def p_expresion_mientras(t):
     '''
-      expresion : MIENTRAS PARIZQ ENTERO MENORQUE ENTERO PARDER LLAIZQ LLADER
+      expresion : MIENTRAS PARIZQ ENTERO MENORQUE ENTERO PARDER LLAIZQ expresion LLADER
     '''
 
 
