@@ -1,0 +1,204 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    CIN
+    COUT
+    DISTINTO
+    ENDL
+    FLOTANTE
+    GET
+    IGUAL
+    MAYORDER
+    MAYORIGUAL
+    MAYORIZQ
+    MENORIGUAL
+    MINUSMINUS
+    NAMESPACE
+    OPERTACION_MATH
+    PARA
+    PLUSPLUS
+    RETURN
+    STD
+    USING
+    VOID
+
+Grammar
+
+Rule 0     S' -> empty
+Rule 1     empty -> <empty>
+Rule 2     declaracion_asignar -> CHAR IDENTIFICADOR PUNTOCOMA
+Rule 3     declaracion_asignar -> INT IDENTIFICADOR PUNTOCOMA
+Rule 4     declaracion_asignar -> FLOAT IDENTIFICADOR PUNTOCOMA
+Rule 5     declaracion_asignar -> CHAR IDENTIFICADOR CORIZQ CORDER PUNTOCOMA
+Rule 6     declaracion_asignar -> INT IDENTIFICADOR CORIZQ CORDER PUNTOCOMA
+Rule 7     declaracion_asignar -> FLOAT IDENTIFICADOR CORIZQ CORDER PUNTOCOMA
+Rule 8     declaracion_asignar -> CHAR IDENTIFICADOR CORIZQ NUMERO CORDER PUNTOCOMA
+Rule 9     declaracion_asignar -> INT IDENTIFICADOR CORIZQ NUMERO CORDER PUNTOCOMA
+Rule 10    declaracion_asignar -> FLOAT IDENTIFICADOR CORIZQ NUMERO CORDER PUNTOCOMA
+Rule 11    declaracion_asignar -> CHAR IDENTIFICADOR COMA declaracion_asignar
+Rule 12    declaracion_asignar -> INT IDENTIFICADOR COMA declaracion_asignar
+Rule 13    declaracion_asignar -> FLOAT IDENTIFICADOR COMA declaracion_asignar
+Rule 14    declaracion_asignar -> CHAR IDENTIFICADOR CORIZQ CORDER COMA declaracion_asignar
+Rule 15    declaracion_asignar -> INT IDENTIFICADOR CORIZQ CORDER COMA declaracion_asignar
+Rule 16    declaracion_asignar -> FLOAT IDENTIFICADOR CORIZQ CORDER COMA declaracion_asignar
+Rule 17    declaracion_asignar -> CHAR IDENTIFICADOR CORIZQ NUMERO CORDER COMA declaracion_asignar
+Rule 18    declaracion_asignar -> INT IDENTIFICADOR CORIZQ NUMERO CORDER COMA declaracion_asignar
+Rule 19    declaracion_asignar -> FLOAT IDENTIFICADOR CORIZQ NUMERO CORDER COMA declaracion_asignar
+Rule 20    declaracion_asignar -> IDENTIFICADOR COMA declaracion_asignar
+Rule 21    declaracion_asignar -> IDENTIFICADOR PUNTOCOMA
+Rule 22    declaracion_asignar -> IDENTIFICADOR CORIZQ CORDER COMA declaracion_asignar
+Rule 23    declaracion_asignar -> IDENTIFICADOR CORIZQ CORDER PUNTOCOMA
+Rule 24    declaracion_asignar -> IDENTIFICADOR CORIZQ NUMERO CORDER COMA declaracion_asignar
+Rule 25    declaracion_asignar -> IDENTIFICADOR CORIZQ NUMERO CORDER PUNTOCOMA
+Rule 26    declaracion_asignar -> INT IDENTIFICADOR ASIGNAR NUMERO PUNTOCOMA
+Rule 27    declaracion_asignar -> CHAR IDENTIFICADOR ASIGNAR CADENA PUNTOCOMA
+Rule 28    declaracion_asignar -> FLOAT IDENTIFICADOR ASIGNAR NUMERO PUNTOCOMA
+Rule 29    declaracion_asignar -> IDENTIFICADOR ASIGNAR NUMERO PUNTOCOMA
+Rule 30    declaracion_asignar -> IDENTIFICADOR ASIGNAR CADENA PUNTOCOMA
+Rule 31    declaracion_asignar -> INT IDENTIFICADOR ASIGNAR IDENTIFICADOR PUNTOCOMA
+Rule 32    declaracion_asignar -> CHAR IDENTIFICADOR ASIGNAR IDENTIFICADOR PUNTOCOMA
+Rule 33    declaracion_asignar -> FLOAT IDENTIFICADOR ASIGNAR IDENTIFICADOR PUNTOCOMA
+Rule 34    if -> SI PARIZQ condiciones_logicas PARDER
+Rule 35    if -> SI PARIZQ condiciones_logicas PARDER LLAIZQ instruccion LLADER
+Rule 36    if -> SI PARIZQ condiciones_logicas PARDER LLAIZQ instruccion LLADER SINO PARDER LLAIZQ instruccion LLADER
+Rule 37    comentario_lineal -> comments_ONELine
+Rule 38    comentario_bloque -> comments
+Rule 39    operaciones_math -> NUMERO SUMA NUMERO PUNTOCOMA
+Rule 40    operaciones_math -> NUMERO RESTA NUMERO PUNTOCOMA
+Rule 41    operaciones_math -> NUMERO MULT NUMERO PUNTOCOMA
+Rule 42    operaciones_math -> NUMERO DIV NUMERO PUNTOCOMA
+Rule 43    operaciones_math -> NUMERO POTENCIA NUMERO PUNTOCOMA
+Rule 44    operaciones_math -> NUMERO MODULO NUMERO PUNTOCOMA
+Rule 45    operaciones_math -> NUMERO SUMA NUMERO operaciones_math
+Rule 46    operaciones_math -> NUMERO RESTA NUMERO operaciones_math
+Rule 47    operaciones_math -> NUMERO MULT NUMERO operaciones_math
+Rule 48    operaciones_math -> NUMERO DIV NUMERO operaciones_math
+Rule 49    operaciones_math -> NUMERO POTENCIA NUMERO operaciones_math
+Rule 50    operaciones_math -> NUMERO MODULO NUMERO operaciones_math
+Rule 51    operaciones_math -> SUMA NUMERO PUNTOCOMA
+Rule 52    operaciones_math -> RESTA NUMERO PUNTOCOMA
+Rule 53    operaciones_math -> MULT NUMERO PUNTOCOMA
+Rule 54    operaciones_math -> DIV NUMERO PUNTOCOMA
+Rule 55    operaciones_math -> POTENCIA NUMERO PUNTOCOMA
+Rule 56    operaciones_math -> MODULO NUMERO PUNTOCOMA
+Rule 57    operacion_booleana -> expresion AND expresion
+Rule 58    operacion_booleana -> expresion OR expresion
+Rule 59    operacion_booleana -> expresion NOT expresion
+Rule 60    condiciones_logicas -> IDENTIFICADOR RELATIONAL IDENTIFICADOR
+Rule 61    condiciones_logicas -> NUMERO RELATIONAL NUMERO
+Rule 62    condiciones_logicas -> IDENTIFICADOR RELATIONAL IDENTIFICADOR condiciones_logicas
+Rule 63    condiciones_logicas -> IDENTIFICADOR LOGIC condiciones_logicas
+Rule 64    condiciones_logicas -> BOOL
+Rule 65    condiciones_logicas -> BOOL LOGIC condiciones_logicas
+Rule 66    while -> MIENTRAS PARIZQ condiciones_logicas PARDER LLAIZQ instruccion LLADER
+Rule 67    do -> DO PARIZQ instruccion PARDER while
+Rule 68    instruccion -> declaracion_asignar
+Rule 69    instruccion -> if
+Rule 70    instruccion -> comentario_lineal
+Rule 71    instruccion -> comentario_bloque
+Rule 72    instruccion -> operacion_booleana
+Rule 73    instruccion -> condiciones_logicas
+Rule 74    instruccion -> while
+Rule 75    instruccion -> do
+Rule 76    instruccion -> empty
+Rule 77    expresion -> INT IDENTIFICADOR CORIZQ ENTERO CORDER ASIGNAR LLAIZQ ENTERO COMA ENTERO COMA ENTERO COMA ENTERO LLADER PUNTOCOMA
+Rule 78    expresion -> NUMERAL INCLUDE MENORQUE expresion MAYORQUE
+Rule 79    expresion -> RESTA expresion
+Rule 80    expresion -> COMDOB expresion COMDOB
+Rule 81    expresion -> IDENTIFICADOR
+
+Terminals, with rules where they appear
+
+AND                  : 57
+ASIGNAR              : 26 27 28 29 30 31 32 33 77
+BOOL                 : 64 65
+CADENA               : 27 30
+CHAR                 : 2 5 8 11 14 17 27 32
+CIN                  : 
+COMA                 : 11 12 13 14 15 16 17 18 19 20 22 24 77 77 77
+COMDOB               : 80 80
+CORDER               : 5 6 7 8 9 10 14 15 16 17 18 19 22 23 24 25 77
+CORIZQ               : 5 6 7 8 9 10 14 15 16 17 18 19 22 23 24 25 77
+COUT                 : 
+DISTINTO             : 
+DIV                  : 42 48 54
+DO                   : 67
+ENDL                 : 
+ENTERO               : 77 77 77 77 77
+FLOAT                : 4 7 10 13 16 19 28 33
+FLOTANTE             : 
+GET                  : 
+IDENTIFICADOR        : 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 31 32 32 33 33 60 60 62 62 63 77 81
+IGUAL                : 
+INCLUDE              : 78
+INT                  : 3 6 9 12 15 18 26 31 77
+LLADER               : 35 36 36 66 77
+LLAIZQ               : 35 36 36 66 77
+LOGIC                : 63 65
+MAYORDER             : 
+MAYORIGUAL           : 
+MAYORIZQ             : 
+MAYORQUE             : 78
+MENORIGUAL           : 
+MENORQUE             : 78
+MIENTRAS             : 66
+MINUSMINUS           : 
+MODULO               : 44 50 56
+MULT                 : 41 47 53
+NAMESPACE            : 
+NOT                  : 59
+NUMERAL              : 78
+NUMERO               : 8 9 10 17 18 19 24 25 26 28 29 39 39 40 40 41 41 42 42 43 43 44 44 45 45 46 46 47 47 48 48 49 49 50 50 51 52 53 54 55 56 61 61
+OPERTACION_MATH      : 
+OR                   : 58
+PARA                 : 
+PARDER               : 34 35 36 36 66 67
+PARIZQ               : 34 35 36 66 67
+PLUSPLUS             : 
+POTENCIA             : 43 49 55
+PUNTOCOMA            : 2 3 4 5 6 7 8 9 10 21 23 25 26 27 28 29 30 31 32 33 39 40 41 42 43 44 51 52 53 54 55 56 77
+RELATIONAL           : 60 61 62
+RESTA                : 40 46 52 79
+RETURN               : 
+SI                   : 34 35 36
+SINO                 : 36
+STD                  : 
+SUMA                 : 39 45 51
+USING                : 
+VOID                 : 
+comments             : 38
+comments_ONELine     : 37
+error                : 
+
+Nonterminals, with rules where they appear
+
+comentario_bloque    : 71
+comentario_lineal    : 70
+condiciones_logicas  : 34 35 36 62 63 65 66 73
+declaracion_asignar  : 11 12 13 14 15 16 17 18 19 20 22 24 68
+do                   : 75
+empty                : 76 0
+expresion            : 57 57 58 58 59 59 78 79 80
+if                   : 69
+instruccion          : 35 36 36 66 67
+operacion_booleana   : 72
+operaciones_math     : 45 46 47 48 49 50
+while                : 67 74
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . empty
+    (1) empty -> .
+
+    $end            reduce using rule 1 (empty -> .)
+
+    empty                          shift and go to state 1
+
+state 1
+
+    (0) S' -> empty .
+
+
