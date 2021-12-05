@@ -33,14 +33,14 @@ def p_declaration_l(p):
     '''
 
 def p_declaration(p):
-    '''declaration : type var_declaration EOI
+    '''declaration : type var_declaration PUNTOCOMA
                    | fun_declaration
     '''
 
 # Declaraciones
 
 def p_var_declaration(p):
-    '''var_declaration : var_declaration COMMA var_definition
+    '''var_declaration : var_declaration COMA var_definition
                        | var_definition
     '''
 
@@ -61,7 +61,7 @@ def p_params(p):
     '''
 
 def p_params_l(p):
-    '''params_l : params_l COMMA param
+    '''params_l : params_l COMA param
                 | param
     '''
 
@@ -82,8 +82,8 @@ def p_expression(p):
     '''
 
 def p_expression_stmt(p):
-    '''expression_stmt : expression EOI
-                       | EOI
+    '''expression_stmt : expression PUNTOCOMA
+                       | PUNTOCOMA
     '''
 
 def p_compound_stmt(p):
@@ -91,7 +91,7 @@ def p_compound_stmt(p):
     '''
 
 def p_local_instructions(p):
-    '''local_instructions : local_instructions type var_declaration EOI
+    '''local_instructions : local_instructions type var_declaration PUNTOCOMA
                           | local_instructions statement
                           | empty
     '''
@@ -101,12 +101,15 @@ def p_statement(p):
                  | compound_stmt 
                  | if_stmt 
                  | while_stmt 
+                 | do_while_stmt 
                  | return_stmt
+                 | lectura_stm
+                 | escritura_stm
     '''
 
 def p_return_stmt(p):
-    '''return_stmt : RETURN EOI
-                   | RETURN expression EOI
+    '''return_stmt : RETURN PUNTOCOMA
+                   | RETURN expression PUNTOCOMA
     '''
 
 def p_if_stmt(p):
@@ -117,15 +120,21 @@ def p_if_stmt(p):
 def p_while_stmt(p):
     '''while_stmt : WHILE LPAREN condition RPAREN statement
     '''
+def p_do_while_stmt(p):
+    '''do_while_stmt : DO statement 
+    '''
+#def p_for_stmt(p):
+#   '''for_stmt : FOR LPAREN declaration condition declaration PLUSPLUS RPAREN statement
+#              | FOR LPAREN declaration condition declaration MINUSMINUS RPAREN statement
+#    '''
 
 # Condiciones
 
 def p_condition(p):
     '''condition : NEGATION simple_expression
                  | condition LOGIC_OP simple_expression
-                 | simple_expression  
+                 | simple_expression    
     '''
-
 # Expresiones
 
 def p_simple_expression(p):
@@ -155,7 +164,22 @@ def p_factor(p):
               | NUMBER
               | CHARACTER   
     '''
+def p_escritura(p):
+    ''' escritura_stm : ESCRITURA LPAREN  STRING  COMA var_multiple RPAREN PUNTOCOMA
+                    | ESCRITURA LPAREN  STRING  RPAREN PUNTOCOMA statement '''
 
+def p_lectura(p):
+    '''lectura_stm : LECTURA LPAREN COMILLA_DOBLE modificadores COMILLA_DOBLE COMA var_multiple RPAREN PUNTOCOMA statement
+    '''
+
+def p_var_multiple(p):
+    ''' var_multiple : ID
+                        | ID COMA var_multiple
+    '''
+def p_multiple_modificador(p):
+    ''' modificadores : MODIFICADOR
+                        | MODIFICADOR modificadores
+    '''
 # Llamadas a funciones
 
 def p_call(p):
@@ -167,7 +191,7 @@ def p_args(p):
     '''
 
 def p_args_l(p):
-    '''args_l : args_l COMMA simple_expression
+    '''args_l : args_l COMA simple_expression
               | simple_expression 
     '''
 def p_error(p):

@@ -4,6 +4,8 @@ reserved = {
     'if' : 'IF',
     'else' : 'ELSE',
     'while': 'WHILE',
+    'do': 'DO',
+    'for': 'FOR',
     'int': 'INT',
     'float': 'FLOAT',
     'char': 'CHAR',
@@ -28,10 +30,16 @@ tokens = [
     'BLOCK_START',
     'BLOCK_END',
     'ASSIGN',
-    'COMMA',
-    'EOI',
+    'COMA',
+    'PUNTOCOMA',
+    'MINUSMINUS',
+    'PLUSPLUS',
     'ID',
-    'HASH'
+    'HASH',
+    'LECTURA',
+    'ESCRITURA',
+    'MODIFICADOR',
+    'COMILLA_DOBLE'
 ] + list(reserved.values())
  
 # Regular expression rules for simple tokens
@@ -57,14 +65,16 @@ t_RPAREN = r'\)'
 t_BLOCK_START = r'\{'
 t_BLOCK_END = r'\}'
 t_ASSIGN = r'='
-t_COMMA = r','
-t_EOI = r';'
+t_COMA = r','
+#t_MINUSMINUS = r'(\-(?!\-))'
+#t_PLUSPLUS = r'(\+(?!\+))'
+t_PUNTOCOMA = r';'
 t_HASH = r'\#'
+t_COMILLA_DOBLE = r'\"'
  
  # A regular expression rule with some action code
 def t_NUMBER(t):
     r'(\d)+(\.(\d)+)?'
-
     if ("." in t.value):
         t.value = float(t.value)
     else:
@@ -89,6 +99,18 @@ def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
+def t_LECTURA(t):
+    r'(scanf)'
+    return t
+
+def t_ESCRITURA(t):
+    r'(printf)'
+    return t
+
+def t_MODIFICADOR(t):
+    r'(%c)|(%d)|(%u)|(%o)|(%x)|(%e)|(%f)|(%s)|(%p)'
+    return t
+
 # Build the lexer
 lexer = lex.lex()
 
@@ -104,8 +126,8 @@ def miLexer():
         linea = tok.lineno
         if linea != linenumber:
             continue
-        #     print('LINEA #: ', linea, '\n')
-        # print(tok.type + ': ', tok.value)
+            print('LINEA #: ', linea, '\n')
+            print(tok.type + ': ', tok.value)
         linenumber = tok.lineno
 
 miLexer()
