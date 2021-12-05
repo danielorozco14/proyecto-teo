@@ -650,7 +650,10 @@ def miParser(code):
                 tok=lexer.token()                
             if x in tokens and x != tok.type:
                 print("Error: se esperaba ", tok.type)
-                return 0;
+                print("En posición:", tok.lexpos)
+                print("En linea:", tok.lineno)
+                x=stack[-1]
+                tok=lexer.token()
             if x not in tokens: #es no terminal
                 print("van entrar a la tabla:")
                 print(x)
@@ -659,7 +662,10 @@ def miParser(code):
                 if  celda is None:
                     print("Error: NO se esperaba", tok.type)
                     print("En posición:", tok.lexpos)
-                    return 0;
+                    print("En linea:", tok.lineno)
+                    print("celda: ", celda)
+                    stack.pop()
+                    x=stack[-1] 
                 else:
                     stack.pop()
                     agregar_pila(celda)
